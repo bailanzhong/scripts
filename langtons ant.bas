@@ -1,4 +1,4 @@
-Private Declare PtrSafe Sub Sleep Lib "kernel32" (ByVal dwMilliseconds As Long)
+Private Declare Sub Sleep Lib "kernel32" (ByVal dwMilliseconds As Long)
 Sub lant()
     
     'Author: Vinson <vinson_wei@126.com>
@@ -18,16 +18,18 @@ Sub lant()
     d.Add 3, "←"
     
     '初始参数设置
-    Set ant = Cells(100, 100)
-    markColor = 15773696
+    Cells(300, 200).Select
+    Set ant = Cells(300, 200)
+    'markColor = 15773696
+    markColor = 0
     antDirection = 0
     cnt = 0
     flag = 0
     maxCnt = 20000
-    sleepTime = 200
+    sleepTime = 10
 
     '清理上次运行痕迹
-    ActiveSheet.Columns.clear
+    ActiveSheet.Columns.Clear
     
     '显示蚂蚁初始位置
     directionNumber = (antDirection / 90) Mod 4
@@ -74,7 +76,7 @@ Sub lant()
     oldAnt.Value = directionSymbol
     Sleep sleepTime
     ant.Value = directionSymbol
-    Sleep sleepTime
+    'Sleep sleepTime
     oldAnt.Value = ""
     If flag Then
         oldAnt.Interior.Color = markColor
@@ -84,4 +86,14 @@ Sub lant()
                                         
     Loop While cnt < maxCnt
 
+End Sub
+
+Private Sub BtnStart_Click()
+    lant
+    
+    
+End Sub
+
+Private Sub BtnStop_Click()
+    End
 End Sub
